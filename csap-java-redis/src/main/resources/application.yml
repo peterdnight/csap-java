@@ -1,0 +1,140 @@
+
+spring.profiles.active: desktop,company
+
+---
+#
+#    Common Config
+#
+
+# Disable fallback to basic auth, use LDAP or not based on the above
+security.basic.enabled: false
+
+server:
+  port: 8090
+  context-path: /redis-service
+  error:
+    include-stacktrace: always
+
+
+# @CsapBootApplication
+csap: 
+  info:
+    name: "${csapName:MyDesktop}"
+    load-balancer-url: "${csapLbUrl:http://csap-secure.yourcompany.com}"
+    lifecycle: "${csapLife:dev}"
+    version: "${csapVersion:1.0-Desktop}"
+    port: "${csapPort:8080}"
+    cluster: "${csapName:dev-desktop-1}"
+    
+  documentation:
+      enabled: true
+    
+  encryptable-properties:
+    enabled: true
+    property-files:
+      - csapSecurity.properties
+
+  web-server:
+    enabled: true
+    ajp-secret: ${csapAjp:ThisWillBeReplaced}
+  
+  security:
+    enabled: true
+    ldap-enabled: true 
+    rest-api-filter:
+      enabled: true
+      urls:
+        - "/demoUrl1/*"
+        - "/demoUrl2/*"
+        - "/helloWithRestAcl"
+      group: "$CSAP_ADMIN_GROUP"
+      cache-seconds: 300
+  
+  performance:
+    enabled: true
+    monitor-urls: 
+        - /*
+        
+  locator:
+    enabled: true
+    active-urls-locator: "${csapLbUrl:https://csap-secure.yourcompany.com}/admin/api/service/urls/active/"
+    low-resources-url-locator: "${csapLbUrl:https://csap-secure.yourcompany.com}/admin/api/service/url/low/"
+    low-resource: "lowCpu"  #lowLoad, lowCpu, ...
+    
+
+
+
+
+
+# needed for template loading in jars
+spring:
+  redis:
+    password: ${redisCredential:changeMe}
+#    host: csap-dev01.yourcompany.com
+#    port: 6379
+    pool:
+      max-wait: 500
+      max-active: 5
+    sentinel:
+      master: mymaster
+      nodes: ${redisSentinels:csap-dev01.yourcompany.com:26379,csap-dev02.yourcompany.com:26379,csapdb-dev01.yourcompany.com:26379}
+      
+#  use sentinels for HA, the following can be used for direct connection
+#  note csap will set the variable $redisSentinels in labs bases on host assignments
+#    host: csap-dev01 
+#    port: 6379    
+
+      
+    
+  
+  
+
+# Spring Boot actuator exposes /health, /info, and /metrics; push then underneath a secure url
+management:
+  context-path: /devOps
+  security:
+    enabled: false
+
+# Spring actuator: info settings
+info:
+  build.profile: ${spring.profiles.active}
+  build.artifact: "Maven: @project.artifactId@"
+  build.name: "@project.name@"
+  build.description: "@project.description@"
+  build.version: "@project.version@"
+ 
+---
+spring.profiles: dev
+# nothing for prod/lt/stage
+
+---
+
+#
+#  ================ desktop configuration
+#
+
+spring:
+  profiles: desktop
+  redis:
+    password: ${redisCredential:changeMe}
+#    host: csap-dev01.yourcompany.com
+#    port: 6379
+    pool:
+      max-wait: 500
+      max-active: 5
+    sentinel:
+      master: mymaster
+      nodes: ${redisSentinels:csap-dev01:26379}  
+    
+server:
+  context-path: /
+    
+csap:
+  web-server:
+    enabled: true
+    ajp-secret: ${csapAjp:ThisWillBeReplaced}
+  security:
+    enabled: false
+    ldap-enabled: false 
+    
+
