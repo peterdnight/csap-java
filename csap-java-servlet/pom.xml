@@ -5,6 +5,8 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>csap-java-servlet</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<groupId>org.csap</groupId>
 	<packaging>war</packaging>
 
 
@@ -12,13 +14,6 @@
 	<description>docker package for csap</description>
 	<url>https://github.com/csap-platform/csap-core/wiki</url>
 
-	<parent>
-		<groupId>org.csap</groupId>
-		<artifactId>csap-starter-parent</artifactId>
-		<version>1.5.7.2</version>
-		<relativePath>../csap-starter/csap-starter-parent</relativePath>
-		<!-- ../csap-starter/csap-starter-parent</relativePath> for use on desktop -->
-	</parent>
 
 
 
@@ -30,16 +25,12 @@
 			<version>8.0.14</version>
 			<scope>provided</scope>
 		</dependency>
-	
-		<dependency>
-			<groupId>com.oracle.ojdbc</groupId>
-			<artifactId>ojdbc</artifactId>
-			<version>14</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
+
+		<!-- uncomment to enable oracle testing <dependency> <groupId>com.oracle.ojdbc</groupId> 
+			<artifactId>ojdbc</artifactId> <version>14</version> <type>jar</type> <scope>compile</scope> 
+			</dependency> -->
 	</dependencies>
-	
+
 	<build>
 
 		<!-- resources needs to be pushed into war plugin in order to avoid m2e 
@@ -55,31 +46,25 @@
 				<directory>resources/WEB-INF/classes/common</directory>
 			</testResource>
 		</testResources>
-		
+
 		<plugins>
-		
 
-			<!--  http://tomcat.apache.org/maven-plugin-2.2/run-mojo-features.html  -->
-			<!--  mvn tomcat7:run will launch an embedded tomcat, no eclipse or netbean hooks needed.
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
 
-			</plugin>
-			
- -->
+			<!-- http://tomcat.apache.org/maven-plugin-2.2/run-mojo-features.html -->
+			<!-- mvn tomcat7:run will launch an embedded tomcat, no eclipse or netbean 
+				hooks needed. <plugin> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> 
+				<version>2.2</version> </plugin> -->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.6.2</version>
-				<configuration> <!--  using 1.7 only for back testing of legacy docker -->
+				<configuration> <!-- using 1.7 only for back testing of legacy docker -->
 					<source>1.7</source>
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			
+
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
