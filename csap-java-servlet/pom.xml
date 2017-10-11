@@ -97,4 +97,16 @@
 		</plugins>
 	</build>
 
+	<distributionManagement>
+		<repository>
+			<id>csap-release-repo</id>
+			<url>${csapReleaseUrl}</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>csap-snapshot-repo</id>
+			<url>${csapSnapUrl}</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 </project>
