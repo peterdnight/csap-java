@@ -31,13 +31,14 @@
 			<scope>provided</scope>
 		</dependency>
 	
+	<!-- 
 		<dependency>
 			<groupId>com.oracle.ojdbc</groupId>
 			<artifactId>ojdbc</artifactId>
 			<version>14</version>
 			<type>jar</type>
 			<scope>compile</scope>
-		</dependency>
+		</dependency> -->
 	</dependencies>
 	
 	<build>
@@ -73,7 +74,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.6.2</version>
 				<configuration> <!--  using 1.7 only for back testing of legacy docker -->
 					<source>1.7</source>
 					<target>1.7</target>
@@ -84,7 +84,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>3.1.0</version>
 			</plugin>
 			<!-- https://dmp.fabric8.io/ -->
 			<plugin>
