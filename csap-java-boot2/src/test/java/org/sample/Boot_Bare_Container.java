@@ -19,6 +19,7 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesBindin
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -34,6 +35,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest ( classes = Boot_Bare_Container.Bare_Application.class )
 @ConfigurationProperties ( prefix = "test" )
 @ActiveProfiles ( "company" )
+@DirtiesContext
 public class Boot_Bare_Container {
 	
 	final static private Logger logger = LoggerFactory.getLogger( Boot_Bare_Container.class );
