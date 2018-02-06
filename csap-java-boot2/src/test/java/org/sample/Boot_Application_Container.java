@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith ( SpringRunner.class )
 @SpringBootTest ( classes = Boot2DemoApplication.class )
 @ActiveProfiles ( "junit" )
-public class Boot_Container_Tests {
+public class Boot_Application_Container {
 	
 
 	final Logger logger = LoggerFactory.getLogger( getClass() );

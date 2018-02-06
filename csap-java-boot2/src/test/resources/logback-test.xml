@@ -14,7 +14,8 @@
 	<root level="info">
 		<appender-ref ref="STDOUT" />
 	</root>
-	<logger name="org.springframework" level="WARN" />
+	<logger name="org.springframework" level="warn" />
+	<logger name="org.springframework.boot.context.config.ConfigFileApplicationListener" level="debug" />
 	<logger name="org.springframework.security.ldap" level="debug" />
 	<logger name="org.springframework.security" level="info" />
 	<logger name="org.springframework.security.web.authentication" level="debug" />

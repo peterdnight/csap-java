@@ -31,11 +31,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @RunWith ( SpringRunner.class )
-@SpringBootTest ( classes = A_Simple_Application.Simple_Application.class, webEnvironment = WebEnvironment.RANDOM_PORT )
+@SpringBootTest ( classes = Boot_Core_Container.Simple_Application.class, webEnvironment = WebEnvironment.RANDOM_PORT )
 @ActiveProfiles ( "junit" )
 @DirtiesContext
-public class A_Simple_Application {
-	final static private Logger logger = LoggerFactory.getLogger( A_Simple_Application.class );
+public class Boot_Core_Container {
+	final static private Logger logger = LoggerFactory.getLogger( Boot_Core_Container.class );
 
 	@BeforeClass
 	// @Before
